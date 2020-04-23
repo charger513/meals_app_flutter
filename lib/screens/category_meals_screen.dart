@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'dummy-data.dart';
+import '../widgets/meal_item.dart';
+import '../dummy-data.dart';
 
 class CategoryMealsScreen extends StatelessWidget {
   static const routeName = '/category-meals';
@@ -10,7 +11,8 @@ class CategoryMealsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final routeArgs = ModalRoute.of(context).settings.arguments as Map<String, String>;
+    final routeArgs =
+        ModalRoute.of(context).settings.arguments as Map<String, String>;
     final categoryTitle = routeArgs['title'];
     final categoryId = routeArgs['id'];
 
@@ -25,8 +27,15 @@ class CategoryMealsScreen extends StatelessWidget {
       body: ListView.builder(
         itemCount: categoryMeals.length,
         itemBuilder: (BuildContext context, int index) {
-        return Text(categoryMeals[index].title);
-       },
+          final meal = categoryMeals[index];
+          return MealItem(
+            title: meal.title,
+            imageUrl: meal.imageUrl,
+            duration: meal.duration,
+            complexity: meal.complexity,
+            affordability: meal.affordability,
+          );
+        },
       ),
     );
   }
