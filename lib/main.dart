@@ -34,13 +34,15 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (BuildContext context) => CategoriesScreen(),
         CategoryMealsScreen.routeName: (BuildContext context) => CategoryMealsScreen(),
-        // MealDetailScreen.routeName: (BuildContext context) => MealDetailScreen(),
+        MealDetailScreen.routeName: (BuildContext context) => MealDetailScreen(),
       },
       onGenerateRoute: (settings) {
         print(settings.arguments);
         return MaterialPageRoute(builder: (ctx) => CategoriesScreen());
       },
-      // onUnknownRoute: ,
+      onUnknownRoute: (settings) {
+        return MaterialPageRoute(builder: (ctx) => CategoriesScreen());
+      },
     );
   }
 }
